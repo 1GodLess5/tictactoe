@@ -142,5 +142,45 @@ public class Main {
         }
         return validity;
     }
+    
+    public static int checkWin(int[][] field){
+        int totalTakenCount = 0;
 
+        // check for horizontal and vertical win
+        for (int i = 0; i < 3; i++){
+            if (field[i][0] == field[i][1] && field[i][1]== field[i][2] && field[i][0] != 0){
+                return field[i][0] - 1;
+            }
+            if (field[0][i] == field[1][i] && field[1][i]== field[2][i] && field[0][i] != 0){
+                return field[i][0] - 1;
+            }
+        }
+
+        // check for diagonal win
+        if (field[0][0] == field[1][1] && field[1][1] == field[2][2] && field[0][0] != 0){
+            return field[0][0] - 1;
+        } else if (field[0][2] == field[1][1] && field[1][1] == field[2][0] && field[0][2] != 0){
+            return field[0][2] - 1;
+        }
+
+        // check for tie
+        for (int i = 0; i < 3; i++){
+            for (int j = 0; j < 3; j++) {
+                if (field[i][j] != 0){
+                    totalTakenCount++;
+                }
+            }
+        }
+        if (totalTakenCount == 9){
+            return 2;
+        }
+
+        // no winner, game continues
+        return 3;
+    }
+    
+    
+    
+    
+    
 }
