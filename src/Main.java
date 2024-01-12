@@ -59,7 +59,59 @@ public class Main {
         return userNames;
     }
 
-//    public static int[][] playerMove(int whichPlayer, int[][] field){
+//    public static int[][] playerMove(int whichPlayer, int[][] field, String[][] userNames){
+//        Scanner scanner = new Scanner(System.in);
+//
+//        System.out.println(Arrays.toString(userNames[whichPlayer]) + "please enter 1 - 9: ");
+//        while (true){
+//            try {
+//                int move = scanner.nextInt();
+//
+//                if (move < 1 || move > 9){
+//                    continue;
+//                }
+//                break;
+//            } catch (Exception e){
+//                System.out.println("Invalid input.");
+//            }
+//        }
+//
 //
 //    }
+
+    public static int[] intToCoordinates(int move){
+        int[] coordinates = new int[2];
+
+        switch (move){
+            case 1 -> {
+                coordinates[0] = 0;
+                coordinates[1] = 0;
+            }case 2 -> {
+                coordinates[0] = 0;
+                coordinates[1] = 1;
+            }case 3 -> {
+                coordinates[0] = 0;
+                coordinates[1] = 2;
+            }case 4 -> {
+                coordinates[0] = 1;
+                coordinates[1] = 0;
+            }case 5 -> {
+                coordinates[0] = 1;
+                coordinates[1] = 1;
+            }case 6 -> {
+                coordinates[0] = 1;
+                coordinates[1] = 2;
+            }case 7 -> {
+                coordinates[0] = 2;
+                coordinates[1] = 0;
+            }case 8 -> {
+                coordinates[0] = 2;
+                coordinates[1] = 1;
+            }case 9 -> {
+                coordinates[0] = 2;
+                coordinates[1] = 2;
+            }
+        }
+        return coordinates;
+    }
 }
