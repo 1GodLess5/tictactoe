@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         int[][] field = {
@@ -5,6 +7,10 @@ public class Main {
                 {0, 0, 0},
                 {0, 0, 0}
         };
+        int userCount = 1;
+        String firstPlayerName = userName(userCount);
+        userCount++;
+        String secondPlayerName = userName(userCount);
 
         drawField(field);
 
@@ -41,5 +47,12 @@ public class Main {
                 System.out.println();
             }
         }
+    }
+
+    public static String userName(int userCount){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("User " + userCount + " please enter your name:");
+        return scanner.nextLine();
     }
 }
