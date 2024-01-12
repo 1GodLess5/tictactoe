@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -9,15 +8,30 @@ public class Main {
                 {0, 0, 0}
         };
         String[] userNames = userName();
-        System.out.println(Arrays.toString(userNames));
+        System.out.println(userNames[0] + " vs " + userNames[1]);
         drawField(field);
-        while (true){
-            field = playerMove(0, field, userNames);
+        int playerPlays = 0;
+        int winner = 3;
+
+        while (winner == 3){
+            field = playerMove(playerPlays, field, userNames);
+            drawField(field);
+
+            winner = checkWin(field);
+            if (winner == 0 || winner == 1){
+                System.out.println();
+                System.out.println(userNames[winner] + " WINS!");
+            } else if (winner == 2) {
+                System.out.println();
+                System.out.println("IT'S A TIE.");
+            }
+
+            if (playerPlays == 0){
+                playerPlays = 1;
+            }else {
+                playerPlays = 0;
+            }
         }
-
-
-
-
     }
 
     public static void drawField(int[][] field){
@@ -66,7 +80,7 @@ public class Main {
 
     public static int[][] playerMove(int whichPlayer, int[][] field, String[] userNames) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(userNames[whichPlayer] + " ,please enter 1 - 9: ");
+        System.out.println(userNames[whichPlayer] + ", please enter your move (1 - 9): ");
         int move;
         while (true) {
             try {
@@ -178,9 +192,4 @@ public class Main {
         // no winner, game continues
         return 3;
     }
-    
-    
-    
-    
-    
 }
