@@ -11,6 +11,10 @@ public class Main {
         String[] userNames = userName();
         System.out.println(Arrays.toString(userNames));
         drawField(field);
+        while (true){
+            field = playerMove(0, field, userNames);
+        }
+
 
 
 
@@ -45,6 +49,7 @@ public class Main {
                 System.out.println();
             }
         }
+        System.out.println();
     }
 
     public static String[] userName(){
@@ -59,28 +64,33 @@ public class Main {
         return userNames;
     }
 
-//    public static int[][] playerMove(int whichPlayer, int[][] field, String[][] userNames) {
-//        Scanner scanner = new Scanner(System.in);
-//
-//        System.out.println(Arrays.toString(userNames[whichPlayer]) + "please enter 1 - 9: ");
-//        int move;
-//        while (true) {
-//            try {
-//                move = scanner.nextInt();
-//
-//                if (move < 1 || move > 9) {
-//                    continue;
-//                }
-//                break;
-//            } catch (Exception e) {
-//                System.out.println("Invalid input.");
-//            }
-//        }
-//
-//        int[] coordinates = intToCoordinates(move);
-//        field[coordinates[0]][coordinates[1]] = whichPlayer + 1;
-//
-//    }
+    public static int[][] playerMove(int whichPlayer, int[][] field, String[] userNames) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(userNames[whichPlayer] + " ,please enter 1 - 9: ");
+        int move;
+        while (true) {
+            try {
+                move = scanner.nextInt();
+
+                if (move < 1 || move > 9) {
+                    System.out.println("Please choose 1 to 9.");
+                    continue;
+                }
+                if (!isMoveValid(field, move)){
+                    System.out.println("This square is already taken.");
+                    continue;
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Invalid input.");
+                scanner.next();
+            }
+        }
+
+        int[] coordinates = intToCoordinates(move);
+        field[coordinates[0]][coordinates[1]] = whichPlayer + 1;
+        return field;
+    }
 
     public static int[] intToCoordinates(int move){
         int[] coordinates = new int[2];
