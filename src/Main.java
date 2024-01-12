@@ -59,23 +59,26 @@ public class Main {
         return userNames;
     }
 
-//    public static int[][] playerMove(int whichPlayer, int[][] field, String[][] userNames){
+//    public static int[][] playerMove(int whichPlayer, int[][] field, String[][] userNames) {
 //        Scanner scanner = new Scanner(System.in);
 //
 //        System.out.println(Arrays.toString(userNames[whichPlayer]) + "please enter 1 - 9: ");
-//        while (true){
+//        int move;
+//        while (true) {
 //            try {
-//                int move = scanner.nextInt();
+//                move = scanner.nextInt();
 //
-//                if (move < 1 || move > 9){
+//                if (move < 1 || move > 9) {
 //                    continue;
 //                }
 //                break;
-//            } catch (Exception e){
+//            } catch (Exception e) {
 //                System.out.println("Invalid input.");
 //            }
 //        }
 //
+//        int[] coordinates = intToCoordinates(move);
+//        field[coordinates[0]][coordinates[1]] = whichPlayer + 1;
 //
 //    }
 
@@ -114,4 +117,20 @@ public class Main {
         }
         return coordinates;
     }
+
+    public static boolean isMoveValid(int[][] field, int move){
+        int[] coordinates = intToCoordinates(move);
+        boolean validity = false;
+        for (int i = 0; i < 3; i++){
+            for (int j = 0; j < 3; j++){
+                if (coordinates[0] == i && coordinates[1] == j) {
+                    if (field[i][j] == 0){
+                        validity = true;
+                    }
+                }
+            }
+        }
+        return validity;
+    }
+
 }
