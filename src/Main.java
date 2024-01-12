@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -7,11 +8,8 @@ public class Main {
                 {0, 0, 0},
                 {0, 0, 0}
         };
-        int userCount = 1;
-        String firstPlayerName = userName(userCount);
-        userCount++;
-        String secondPlayerName = userName(userCount);
-
+        String[] userNames = userName();
+        System.out.println(Arrays.toString(userNames));
         drawField(field);
 
 
@@ -49,10 +47,19 @@ public class Main {
         }
     }
 
-    public static String userName(int userCount){
+    public static String[] userName(){
         Scanner scanner = new Scanner(System.in);
+        String[] userNames = new String[2];
 
-        System.out.println("User " + userCount + " please enter your name:");
-        return scanner.nextLine();
+        for (int i = 0; i < 2; i++){
+            System.out.println("User " + (i + 1) + " please enter your name:");
+            userNames[i] = scanner.nextLine();
+        }
+
+        return userNames;
     }
+
+//    public static int[][] playerMove(int whichPlayer, int[][] field){
+//
+//    }
 }
