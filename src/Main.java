@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         int[][] field = {
                 {0, 0, 0},
                 {0, 0, 0},
@@ -14,7 +15,7 @@ public class Main {
         int winner = 3;
 
         while (winner == 3){
-            field = playerMove(playerPlays, field, userNames);
+            playerMove(playerPlays, field, userNames, scanner);
             drawField(field);
 
             winner = checkWin(field);
@@ -78,8 +79,7 @@ public class Main {
         return userNames;
     }
 
-    public static int[][] playerMove(int whichPlayer, int[][] field, String[] userNames) {
-        Scanner scanner = new Scanner(System.in);
+    public static int[][] playerMove(int whichPlayer, int[][] field, String[] userNames, Scanner scanner) {
         System.out.println(userNames[whichPlayer] + ", please enter your move (1 - 9): ");
         int move;
         while (true) {
@@ -92,6 +92,7 @@ public class Main {
                 }
                 if (!isMoveValid(field, move)){
                     System.out.println("This square is already taken.");
+                    System.out.println("Please pick another square (1 - 9): ");
                     continue;
                 }
                 break;
